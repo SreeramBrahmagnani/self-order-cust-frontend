@@ -69,13 +69,16 @@ function checkCart(){
 checkCart();
 function addCart($idProduct) {
     let productsCopy = JSON.parse(JSON.stringify(products));
-    // If this product is not in the cart
-    if (!listCart[$idProduct]) {
-        listCart[$idProduct] = productsCopy.filter(product => product.id == $idProduct)[0];
-        listCart[$idProduct].quantity = 1;
+    // Find if the product is already in the cart
+    let cartItem = listCart.find(item => item && item.id === $idProduct);
+    if (!cartItem) {
+        let productToAdd = productsCopy.find(product => product.id === $idProduct);
+        if (productToAdd) {
+            productToAdd.quantity = 1;
+            listCart.push(productToAdd);
+        }
     } else {
-        // If this product is already in the cart, increase the quantity
-        listCart[$idProduct].quantity++;
+        cartItem.quantity++;
     }
     document.cookie = "listCart=" + JSON.stringify(listCart) + "; expires=Thu, 31 Dec 2025 23:59:59 UTC; path=/;";
     addCartToHTML();
@@ -130,19 +133,22 @@ document.querySelector('#checkout-link').addEventListener('click', function(even
 });
 
 function changeQuantity($idProduct, $type){
+    // Find the cart item by id
+    let cartItem = listCart.find(item => item && item.id === $idProduct);
+    if (!cartItem) return;
+
     switch ($type) {
         case '+':
-            listCart[$idProduct].quantity++;
+            cartItem.quantity++;
             break;
         case '-':
-            listCart[$idProduct].quantity--;
-
-            // if quantity <= 0 then remove product in cart
-            if(listCart[$idProduct].quantity <= 0){
-                delete listCart[$idProduct];
+            cartItem.quantity--;
+            // if quantity <= 0 then remove product from cart
+            if(cartItem.quantity <= 0){
+                // Remove the item from the array
+                listCart = listCart.filter(item => item && item.id !== $idProduct);
             }
             break;
-    
         default:
             break;
     }
