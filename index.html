@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>FOOD ITEMS</h1>
+            <!-- icon-cart -->
+            <div class="iconCart">
+                <img src="icon.png">
+                <div class="totalQuantity">0</div>
+            </div>
+        </header>
+        <div class="listProduct">
+            <!-- some code -->
+        </div>
+    </div>
+    <div class="cart">
+        <h2>CART</h2>
+        <div class="listCart">
+           <!-- some code -->
+        </div>
+        <div class="totalAmount">Total Amount: ₹0</div>
+        
+        <div class="buttons">
+            <div class="close">CLOSE</div>
+            <div class="checkout"><a id="checkout-link" href="checkout.html">CHECKOUT</a></div>
+        </div>
+    </div>
+
+    <div id="menu-update-notification" style="display:none;position:fixed;top:30px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:16px 32px;border-radius:8px;z-index:9999;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,0.2);">
+        We are going to update the menu. The page will refresh automatically.
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="app.js"></script>
+    
+</body>
+</html>
