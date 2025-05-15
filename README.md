@@ -1,1 +1,1 @@
-# self-order-cust-frontend
+https://sreerambrahmagnani.github.io/self-order-cust-frontend/
